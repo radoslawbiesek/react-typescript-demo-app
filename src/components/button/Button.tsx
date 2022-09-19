@@ -1,18 +1,18 @@
-import styles from './Button.module.scss';
+import * as React from "react";
+import styles from "./Button.module.css";
 
-type ButtonProps = React.ComponentProps<"button"> & {
-  children: React.ReactNode;
+const defaultTag = "button";
+
+type ButtonProps<T extends React.ElementType = typeof defaultTag> = {
   variant?: "primary" | "secondary";
-};
+  as?: T;
+} & React.ComponentPropsWithoutRef<T>;
 
-const Button = ({
-  children,
-  variant = "secondary",
-  onClick,
-}: ButtonProps) => (
-  <button onClick={onClick} className={styles[variant]}>
-    {children}
-  </button>
-);
+function Button<T extends React.ElementType = typeof defaultTag>({ variant = "secondary", as, ...rest }: ButtonProps<T>) {
+  const Component = as || defaultTag;
+  return (
+    <Component className={styles[variant]} {...rest} />
+  )
+};
 
 export default Button;
