@@ -1,9 +1,7 @@
+import Form from "./components/form/Form";
+
 function App() {
-  return (
-    <div>
-      Hello world
-    </div>
-  );
+  return <Form handleSubmit={console.log} />;
 }
 
 export default App;

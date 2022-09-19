@@ -8,11 +8,13 @@ type ButtonProps<T extends React.ElementType = typeof defaultTag> = {
   as?: T;
 } & React.ComponentPropsWithoutRef<T>;
 
-function Button<T extends React.ElementType = typeof defaultTag>({ variant = "secondary", as, ...rest }: ButtonProps<T>) {
+function Button<T extends React.ElementType = typeof defaultTag>({
+  variant = "secondary",
+  as,
+  ...rest
+}: ButtonProps<T>) {
   const Component = as || defaultTag;
-  return (
-    <Component className={styles[variant]} {...rest} />
-  )
-};
+  return <Component className={styles[variant]} {...rest} />;
+}
 
 export default Button;
